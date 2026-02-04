@@ -6,6 +6,10 @@ class AppColors {
   static const Color grey = Color(0xff7C7C7C);
   static const Color lightGrey = Color(0xffEBEBEB);
   static const Color background = Colors.white;
+  static const Color white = Colors.white;
+  static const Color red = Color(0xffFF3B30);
+  static const Color green = Color(0xff27AE60);
+
   //
   static const Color secondary = Color(0xffF8A44C); // buttons or highlights
   static const Color accent = Color(0xff4A90E2); //  Links or side elements

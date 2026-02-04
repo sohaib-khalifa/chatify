@@ -3,7 +3,7 @@ import 'package:chatify/core/functions/navigation.dart';
 import 'package:chatify/core/styles/app_color.dart';
 import 'package:chatify/core/styles/text_style.dart';
 import 'package:chatify/features/auth/screens/login_screen.dart';
-import 'package:chatify/features/intro/widgets/primary_button.dart';
+import 'package:chatify/core/widgets/primary_button.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 
