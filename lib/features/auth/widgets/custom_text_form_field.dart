@@ -1,8 +1,8 @@
 import 'package:chatify/core/styles/app_color.dart';
 import 'package:flutter/material.dart';
 
-class CustomTextField extends StatelessWidget {
-  const CustomTextField({
+class CustomTextFormField extends StatelessWidget {
+  const CustomTextFormField({
     super.key,
     required this.hintText,
     required this.labelText,
@@ -13,7 +13,14 @@ class CustomTextField extends StatelessWidget {
   final void Function(String)? onChanged;
   @override
   Widget build(BuildContext context) {
-    return TextField(
+    return TextFormField(
+      autovalidateMode: AutovalidateMode.onUserInteraction,
+
+      validator: (value) {
+        if (value!.isEmpty) {
+          return 'field is required';
+        }
+      },
       onChanged: onChanged,
 
       cursorColor: AppColors.white,
@@ -31,6 +38,14 @@ class CustomTextField extends StatelessWidget {
         focusedBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular(16),
           borderSide: BorderSide(color: AppColors.black),
+        ),
+        errorBorder: OutlineInputBorder(
+          borderSide: BorderSide(color: AppColors.error, width: 1),
+          borderRadius: BorderRadius.circular(16),
+        ),
+        focusedErrorBorder: OutlineInputBorder(
+          borderSide: BorderSide(color: AppColors.error, width: 2),
+          borderRadius: BorderRadius.circular(16),
         ),
       ),
     );
