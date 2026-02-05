@@ -6,12 +6,16 @@ class CustomTextField extends StatelessWidget {
     super.key,
     required this.hintText,
     required this.labelText,
+    this.onChanged,
   });
   final String hintText;
   final String labelText;
+  final void Function(String)? onChanged;
   @override
   Widget build(BuildContext context) {
     return TextField(
+      onChanged: onChanged,
+
       cursorColor: AppColors.white,
       decoration: InputDecoration(
         // hint: Text('Email'),

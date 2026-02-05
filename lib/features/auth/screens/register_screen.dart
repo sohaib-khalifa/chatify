@@ -4,11 +4,14 @@ import 'package:chatify/core/styles/app_color.dart';
 import 'package:chatify/core/styles/text_style.dart';
 import 'package:chatify/core/widgets/primary_button.dart';
 import 'package:chatify/features/auth/widgets/custom_text_field.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
 class Registerscreen extends StatelessWidget {
-  const Registerscreen({super.key});
+  // const Registerscreen({super.key});
   static const id = 'register_screen';
+  String? email;
+  String? password;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -29,9 +32,21 @@ class Registerscreen extends StatelessWidget {
               style: TextStyles.title.copyWith(color: AppColors.lightGrey),
             ),
             SizedBox(height: 15),
-            CustomTextField(hintText: 'Email', labelText: 'Email'),
+            CustomTextField(
+              onChanged: (data) {
+                email = data;
+              },
+              hintText: 'Email',
+              labelText: 'Email',
+            ),
             SizedBox(height: 10),
-            CustomTextField(hintText: 'Password', labelText: 'Password'),
+            CustomTextField(
+              onChanged: (data) {
+                password = data;
+              },
+              hintText: 'Password',
+              labelText: 'Password',
+            ),
             SizedBox(height: 30),
 
             // ElevatedButton(
@@ -46,7 +61,25 @@ class Registerscreen extends StatelessWidget {
             //   child: Text('LOGIN', style: TextStyles.body),
             // ),
             PrimaryButton(
-              onPressed: () {},
+              onPressed: () async {
+                try {
+                  final credential = await FirebaseAuth.instance
+                      .createUserWithEmailAndPassword(
+                        email: email!,
+                        password: password!,
+                      );
+
+                  showSnackBar(context: context, text: 'success');
+                } on FirebaseAuthException catch (e) {
+                  if (e.code == 'weak-password') {
+                    showSnackBar(context: context, text: 'weak password');
+                  } else if (e.code == 'email-already-in-use') {
+                    showSnackBar(context: context, text: 'email already exist');
+                  }
+                } catch (e) {
+                  showSnackBar(context: context, text: 'there was an error');
+                }
+              },
               title: 'REGISTER',
               textStyle: TextStyles.body,
               backgroundColor: AppColors.lightGrey,
@@ -68,5 +101,15 @@ class Registerscreen extends StatelessWidget {
         ),
       ),
     );
+  }
+
+  ScaffoldFeatureController<SnackBar, SnackBarClosedReason> showSnackBar({
+    required BuildContext context,
+    required String text,
+    Color? bgColor,
+  }) {
+    return ScaffoldMessenger.of(
+      context,
+    ).showSnackBar(SnackBar(backgroundColor: bgColor, content: Text(text)));
   }
 }
