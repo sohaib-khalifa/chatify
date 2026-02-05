@@ -67,7 +67,6 @@ class Registerscreen extends StatelessWidget {
               PrimaryButton(
                 onPressed: () async {
                   if (formKey.currentState!.validate()) {
-                    
                     try {
                       await registerUser();
                       showSnackBar(
