@@ -1,5 +1,6 @@
 import 'package:chatify/core/constants/app_images.dart';
 import 'package:chatify/core/functions/navigation.dart';
+import 'package:chatify/core/functions/show_snack_bar.dart';
 import 'package:chatify/core/styles/app_color.dart';
 import 'package:chatify/core/styles/text_style.dart';
 import 'package:chatify/core/widgets/primary_button.dart';
@@ -103,13 +104,5 @@ class Registerscreen extends StatelessWidget {
     );
   }
 
-  ScaffoldFeatureController<SnackBar, SnackBarClosedReason> showSnackBar({
-    required BuildContext context,
-    required String text,
-    Color? bgColor,
-  }) {
-    return ScaffoldMessenger.of(
-      context,
-    ).showSnackBar(SnackBar(backgroundColor: bgColor, content: Text(text)));
-  }
+
 }
