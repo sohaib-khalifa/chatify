@@ -64,12 +64,7 @@ class Registerscreen extends StatelessWidget {
             PrimaryButton(
               onPressed: () async {
                 try {
-                  final credential = await FirebaseAuth.instance
-                      .createUserWithEmailAndPassword(
-                        email: email!,
-                        password: password!,
-                      );
-
+                  await registerUser();
                   showSnackBar(context: context, text: 'success');
                 } on FirebaseAuthException catch (e) {
                   if (e.code == 'weak-password') {
@@ -104,5 +99,8 @@ class Registerscreen extends StatelessWidget {
     );
   }
 
-
+  Future<void> registerUser() async {
+    final credential = await FirebaseAuth.instance
+        .createUserWithEmailAndPassword(email: email!, password: password!);
+  }
 }
