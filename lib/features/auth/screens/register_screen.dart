@@ -65,15 +65,32 @@ class Registerscreen extends StatelessWidget {
               onPressed: () async {
                 try {
                   await registerUser();
-                  showSnackBar(context: context, text: 'success');
+                  showSnackBar(
+                    context: context,
+                    text: 'success',
+                    bgColor: AppColors.success,
+                  );
+                  popTo(context);
                 } on FirebaseAuthException catch (e) {
                   if (e.code == 'weak-password') {
-                    showSnackBar(context: context, text: 'weak password');
+                    showSnackBar(
+                      context: context,
+                      text: 'weak password',
+                      bgColor: AppColors.warning,
+                    );
                   } else if (e.code == 'email-already-in-use') {
-                    showSnackBar(context: context, text: 'email already exist');
+                    showSnackBar(
+                      context: context,
+                      text: 'email already exist',
+                      bgColor: AppColors.error,
+                    );
                   }
                 } catch (e) {
-                  showSnackBar(context: context, text: 'there was an error');
+                  showSnackBar(
+                    context: context,
+                    text: 'there was an error',
+                    bgColor: AppColors.error,
+                  );
                 }
               },
               title: 'REGISTER',

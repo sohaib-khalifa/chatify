@@ -5,7 +5,10 @@ ScaffoldFeatureController<SnackBar, SnackBarClosedReason> showSnackBar({
   required String text,
   Color? bgColor,
 }) {
-  return ScaffoldMessenger.of(
-    context,
-  ).showSnackBar(SnackBar(backgroundColor: bgColor, content: Text(text)));
+  return ScaffoldMessenger.of(context).showSnackBar(
+    SnackBar(
+      backgroundColor: bgColor,
+      content: Center(child: Text(text)),
+    ),
+  );
 }

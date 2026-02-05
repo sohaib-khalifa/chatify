@@ -9,8 +9,10 @@ class AppColors {
   static const Color white = Colors.white;
   static const Color red = Color(0xffFF3B30);
   static const Color green = Color(0xff27AE60);
+  static const Color warning = Color(0xFFFF8C00);
 
-  //
+  //0xFFFF8C00
+
   static const Color secondary = Color(0xffF8A44C); // buttons or highlights
   static const Color accent = Color(0xff4A90E2); //  Links or side elements
   static const Color error = Color(0xffFF3B30);
